@@ -1,0 +1,16 @@
+.title {
+  color: rgb(115, 18, 18);
+  background-color: aliceblue;
+}
+.main {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  justify-content: center;
+}

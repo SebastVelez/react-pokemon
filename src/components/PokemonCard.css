@@ -1,0 +1,171 @@
+:root {
+  /* Variables que coinciden con PokemonDetail */
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8f9fa;
+  --bg-section: #f8f9fa;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --accent-color: #6890f0; /* Color tipo agua de Pokémon */
+  --button-bg: #f0f2f5;
+  --button-hover: #e0e0e0;
+}
+
+.dark {
+  --bg-card: #2d2d2d;
+  --bg-card-hover: #383838;
+  --bg-section: #383838;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --border-color: #404040;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --button-bg: #404040;
+  --button-hover: #505050;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px var(--shadow-color);
+  background-color: var(--bg-card-hover);
+}
+
+.card_selected {
+  border: 3px solid var(--accent-color);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 12px var(--shadow-color);
+  }
+  50% {
+    box-shadow: 0 4px 20px var(--accent-color);
+  }
+  100% {
+    box-shadow: 0 4px 12px var(--shadow-color);
+  }
+}
+
+.card__image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 4px 6px var(--shadow-color));
+}
+
+.card:hover .card__image {
+  transform: scale(1.1);
+}
+
+.card__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  text-transform: capitalize;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.card__buttons {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.card__buttons button {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--button-bg);
+  color: var(--text-primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  min-width: 120px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card__buttons button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+}
+
+.card__buttons button:active {
+  transform: translateY(0);
+}
+
+/* Estilo especial para el botón de seleccionado */
+.card_selected .card__buttons button:last-child {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.card_selected .card__buttons button:last-child:hover {
+  background-color: #5780e0;
+}
+
+/* Diseño responsive */
+@media (max-width: 768px) {
+  .card {
+    padding: 1rem;
+    min-width: 160px;
+  }
+
+  .card__image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .card__title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .card__buttons {
+    flex-direction: column;
+  }
+
+  .card__buttons button {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Animación al seleccionar */
+@keyframes selectPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.card_selected {
+  animation: selectPop 0.3s ease;
+}
