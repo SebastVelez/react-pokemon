@@ -1,51 +1,43 @@
 import "./App.css";
 import Main from "./components/Main";
-import PokemonLogin from "./components/PokemonLogin";
-import { Routes, Route } from "react-router";
 import Header from "./components/Header";
 import { createContext, useState } from "react";
+
 const studentsList = [
   {
-    name: "Itzel",
+    name: "Ismael",
     number: 1,
   },
   {
-    name: "Gabriela",
+    name: "Jacobo",
     number: 4,
   },
   {
-    name: "Lina",
+    name: "Paco",
     number: 7,
   },
   {
-    name: "May",
+    name: "Paola",
     number: 25,
   },
   {
-    name: "Maria",
+    name: "Victor",
     number: 151,
-  },
-  {
-    name: "Diego",
-    number: 200,
   },
 ];
 
 export const DarkModeContext = createContext();
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false); // esta en modo oscuro? -> true / false
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
-    <>
+    <div className={`app ${isDarkMode && "darkMode"}`}>
       <DarkModeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
         <Header />
-        <Routes>
-          <Route path="/login" element={<PokemonLogin />} />
-          <Route path="/" element={<Main list={studentsList} />} />
-        </Routes>
+        <Main list={studentsList} />
       </DarkModeContext.Provider>
-    </>
+    </div>
   );
 }
 

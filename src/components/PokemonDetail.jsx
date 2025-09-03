@@ -1,44 +1,28 @@
-import React, { useState, useEffect } from "react";
 import "./PokemonDetail.css";
-
-const PokemonDetail = ({ pokemonId, name }) => {
+import { useState, useEffect } from "react";
+const PokemonDetail = ({ pokemonId, nickname }) => {
   const [pokemon, setPokemon] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPokemonDetail = async () => {
+    //los estados ocurren despues del renderizado
+    const fetchPokemonDetails = async () => {
       try {
         const response = await fetch(
           `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
         );
         const data = await response.json();
         setPokemon(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching pokemon:", error);
-        setLoading(false);
+      } catch (err) {
+        alert("error en la peticion");
       }
     };
-
     if (pokemonId) {
-      fetchPokemonDetail();
+      fetchPokemonDetails();
     }
   }, [pokemonId]);
 
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <div className="loading-text">Cargando...</div>
-      </div>
-    );
-  }
-
   if (!pokemon) {
-    return (
-      <div className="error-container">
-        <div className="error-text">Pokémon no encontrado</div>
-      </div>
-    );
+    return <div>Selecciona un pokemon para ver los detalles</div>;
   }
 
   return (
@@ -55,7 +39,7 @@ const PokemonDetail = ({ pokemonId, name }) => {
               />
             </div>
             <h1 className="pokemon-name">
-              {name || pokemon.name}
+              {nickname || pokemon.name}
               <span className="pokemon-number">
                 #{String(pokemonId).padStart(3, "0")}
               </span>

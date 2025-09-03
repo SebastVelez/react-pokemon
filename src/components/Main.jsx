@@ -1,15 +1,11 @@
 import "./Main.css";
 import PokemonCard from "./PokemonCard";
-
 import { useState, useContext } from "react";
-import PokemonDetail from "./PokemonDetail";
 import { DarkModeContext } from "../App";
+import PokemonDetail from "./PokemonDetail";
 export default function Main(props) {
-  const [pokemonNumberSelected, setPokemonNumberSelected] = useState(
-    props.list[0].number
-  );
+  const [pokemonNumberSelected, setPokemonNumberSelected] = useState(0);
   const { isDarkMode } = useContext(DarkModeContext);
-
   return (
     <main className={`main ${isDarkMode && "dark"}`}>
       <ul className="list">
@@ -17,16 +13,16 @@ export default function Main(props) {
           return (
             <PokemonCard
               name={student.name}
-              pokemonNumber={student.number}
+              number={student.number}
               key={student.name}
-              setPokemonNumberSelected={setPokemonNumberSelected}
               pokemonNumberSelected={pokemonNumberSelected}
+              setPokemonNumberSelected={setPokemonNumberSelected}
             />
           );
         })}
       </ul>
 
-      <PokemonDetail pokemonId={pokemonNumberSelected} name="" />
+      <PokemonDetail pokemonId={pokemonNumberSelected} />
     </main>
   );
 }

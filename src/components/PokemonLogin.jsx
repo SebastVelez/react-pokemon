@@ -1,24 +1,10 @@
 import React, { useState, useContext } from "react";
 import "./PokemonLogin.css";
-import { useNavigate } from "react-router";
+
 import { DarkModeContext } from "../App";
 const PokemonLogin = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { isDarkMode } = useContext(DarkModeContext);
-  const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-      if (username && password) {
-        navigate("/");
-      }
-    }, 1500);
-  };
 
   return (
     <div className={`login-container ${isDarkMode && "dark"}`}>
@@ -38,8 +24,6 @@ const PokemonLogin = () => {
             <input
               type="text"
               id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
               placeholder="Ash Ketchum"
               required
               className="form-input"
@@ -51,8 +35,6 @@ const PokemonLogin = () => {
             <input
               type="password"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
               className="form-input"
