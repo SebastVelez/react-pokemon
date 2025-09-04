@@ -1,0 +1,9 @@
+hook es una funcion personalizada de un sistema
+
+renderizar componentes dependiendo del endpoint
+
+pokemon.page.com/  -> <Main />
+
+pokemon.page.com/login  -> <Login />
+
+pokemon.page.com/register  -> <Register />

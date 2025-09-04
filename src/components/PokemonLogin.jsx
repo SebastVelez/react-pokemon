@@ -1,10 +1,20 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import "./PokemonLogin.css";
 
 import { DarkModeContext } from "../App";
+
 const PokemonLogin = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { isDarkMode } = useContext(DarkModeContext);
+  function handleSubmit(evt) {
+    evt.preventDefault();
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }
 
   return (
     <div className={`login-container ${isDarkMode && "dark"}`}>
@@ -27,6 +37,10 @@ const PokemonLogin = () => {
               placeholder="Ash Ketchum"
               required
               className="form-input"
+              value={username}
+              onChange={(evt) => {
+                setUsername(evt.target.value);
+              }}
             />
           </div>
 
@@ -38,6 +52,8 @@ const PokemonLogin = () => {
               placeholder="••••••••"
               required
               className="form-input"
+              value={password}
+              onChange={(evt) => setPassword(evt.target.value)}
             />
           </div>
 

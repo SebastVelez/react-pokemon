@@ -6,6 +6,10 @@ import PokemonDetail from "./PokemonDetail";
 export default function Main(props) {
   const [pokemonNumberSelected, setPokemonNumberSelected] = useState(0);
   const { isDarkMode } = useContext(DarkModeContext);
+
+  function handleSubmit() {
+    onUpdateUser({ name: "valor del estado", about: "valor del estado" });
+  }
   return (
     <main className={`main ${isDarkMode && "dark"}`}>
       <ul className="list">
